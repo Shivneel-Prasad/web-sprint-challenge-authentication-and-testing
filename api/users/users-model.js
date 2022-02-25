@@ -8,7 +8,7 @@ function findBy(filter) {
         .select('id', 'username', 'password')
         .where(filter)
 }
-function findById(id) {
+function findById(id) { // to be used by add function
     return db('users')
         .select('id','username','password')
         .where('id', id)
