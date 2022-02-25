@@ -13,7 +13,13 @@ router.post('/register', usernameExists, checkPayload, (req, res, next) => {
         .then(newUser => {
           res.status(201).json(newUser)
         })
-        .catch(next)
+        .catch(err => {
+          next({ 
+            status: 401,
+            message: 'username and password required',
+            error: err.message
+          })
+        })
 });
 
 router.post('/login', (req, res, next) => {
