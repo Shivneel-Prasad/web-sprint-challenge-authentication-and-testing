@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
         } else {
           res.status(401).json({
             status: 401,
-            message: 'Invalid Credentials'
+            message: 'username and password required'
           })
         }
       })

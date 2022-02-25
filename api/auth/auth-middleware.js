@@ -5,7 +5,7 @@ const checkPayload = async (req, res, next) => {
         if(!req.body.username || !req.body.password) {
             res.status(401).json({
                 status: 401,
-                message: 'Username & Password is required'
+                message: 'Username and Password required'
             })
         } else {
             next()
@@ -22,7 +22,7 @@ const usernameExists = async (req, res, next) => {
           if (exists[0]) {
             res.status(422).json({
                 status: 422,
-                message: 'Username already exists in the database'
+                message: 'Username taken'
             })
           } else {
               next()
