@@ -25,3 +25,31 @@ beforeEach(async () => {
     })
 })
 
+describe('[POST] /register', () => {  
+  test('creates a new user onto the database', async () => {
+    const users = await db('users')
+    expect(users).toHaveLength(1)
+  })
+  test('responds with a newly created user', async () => {
+    const users = await db('users')
+    expect(users[0].username).toEqual('user')
+  })
+})
+
+describe('[POST] /login', () => {
+  test('responds with error when no username', async () => {
+      const res = await request(server).post('/login').send({
+        username: '', 
+        password: 'foobar'
+      })
+      expect(res.status).toBe(404)
+  })
+  test('responds with error when no password', async () => {
+    const res = await request(server).post('/login').send({
+      username: 'Captain Marvel', 
+      password: ''
+    })
+    expect(res.status).toBe(404)
+})
+  
+})
